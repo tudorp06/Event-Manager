@@ -9,7 +9,7 @@ import os
 class UI:
     def __init__(self, event_service: EventService, participant_service: ParticipantService):
         self.__event_service = event_service
-        self.__participant_service = ParticipantService
+        self.__participant_service = participant_service
 
     def clear_screen(self):
         os.system("cls")
@@ -48,56 +48,53 @@ class UI:
 
     def run(self):
         while True:
+            self.__main_menu()
             try:
-                self.__main_menu()
                 command = int(input("Choose your mode: "))
-            except ValueError as error:
-                print("Caught an error: " + str(error))
-            try:
                 if command == 1:
-                    self.__organiser_menu()
-                    option = int(input("Your option: "))
-                    if option == 1:
-                        self.clear_screen()
-                        self.__add_event()
-                    elif option == 2:
-                        self.clear_screen()
-                        self.__delete_event()
-                    elif option == 3:
-                        self.clear_screen()
-                        self.__update_event()
-                    elif option == 4:
-                        self.clear_screen()
-                        self.__print_events_by_city()
-                    elif option == 5:
-                        self.clear_screen()
-                        self.__view_event_participants()
-                    elif option == 6:
-                        self.clear_screen()
-                        self.__view_events_with_participants()
-                    elif option == 7:
-                        self.clear_screen()
-                        self.show_qr()
-                    elif option == 0:
-                        self.__main_menu()
+                        self.__organiser_menu()
+                        option = int(input("Your option: "))
+                        if option == 1:
+                            self.clear_screen()
+                            self.__add_event()
+                        elif option == 2:
+                            self.clear_screen()
+                            self.__delete_event()
+                        elif option == 3:
+                            self.clear_screen()
+                            self.__update_event()
+                        elif option == 4:
+                            self.clear_screen()
+                            self.__print_events_by_city()
+                        elif option == 5:
+                            self.clear_screen()
+                            self.__view_event_participants()
+                        elif option == 6:
+                            self.clear_screen()
+                            self.__view_events_with_participants()
+                        elif option == 7:
+                            self.clear_screen()
+                            self.show_qr()
+                        elif option == 0:
+                            self.__main_menu()
 
                 elif command == 2:
-                    self.__participant_menu()
-                    option = int(input("Your option: "))
-                    if option == 1:
-                        self.clear_screen()
-                        self.__print_event_list()
-                    elif option == 2:
-                        self.clear_screen()
-                        self.__apply_to_event()
-                    elif option == 3:
-                        self.clear_screen()
-                        self.__print_next_7_day_events()
-                    elif option == 4:
-                        self.clear_screen()
-                        self.__view_events_by_month()
-                    elif option == 0:
-                        self.__main_menu()
+                        self.__participant_menu()
+                        option = int(input("Your option: "))
+                        if option == 1:
+                            self.clear_screen()
+                            self.__print_event_list()
+                        elif option == 2:
+                            self.clear_screen()
+                            self.__apply_to_event()
+                        elif option == 3:
+                            self.clear_screen()
+                            self.__print_next_7_day_events()
+                        elif option == 4:
+                            self.clear_screen()
+                            self.__view_events_by_month()
+                        elif option == 0:
+                            self.__main_menu()
 
                 elif command == 0:
                     exit("Thank you for using this app!")
@@ -188,8 +185,7 @@ class UI:
             raise Exception("This event has no participants!")
         else:
             print("The participants of this event are: ")
-            for participant in participant_list:
-                print(participant)
+            print(participant_list)
 
     def __view_events_with_participants(self):
         events_with_participants = self.__event_service.get_events_with_participants()

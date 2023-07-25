@@ -1,5 +1,5 @@
 class Event:
-    def __init__(self,id,title,city,number_of_participants,maximum_places,start_date,final_date,website):
+    def __init__(self, id, title, city, number_of_participants, maximum_places, start_date, final_date, website):
         self.__id = id
         self.__title = title
         self.__city = city
@@ -62,11 +62,14 @@ class Event:
         return self.__participant_list
 
     def __repr__(self):
-        return "Event of id: {i}, title: {t}, city: {c}, number of participants: {np}, maximum spots available: {ms}, " \
-               "start date: {s}, end date: {f}".format(i = self.get_id(), c = self.get_city(), t = self.get_title(),
-                                                       np = self.get_number_of_participants(),
-                                                       ms = self.get_maximum_places(), s = self.get_start_date(),
-                                                       f = self.get_final_date())
+        i = self.get_id()
+        c = self.get_city()
+        t = self.get_title()
+        np = self.get_number_of_participants()
+        ms = self.get_maximum_places()
+        s = self.get_start_date()
+        f = self.get_final_date()
+        return f"Event of id: {i}, title: {t}, city: {c}, number of participants: {np}, maximum spots available: {ms}, start date: {s}, end date: {f}"
 
     def __str__(self):
         return str(repr(self))

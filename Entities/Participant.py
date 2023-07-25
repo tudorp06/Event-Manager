@@ -2,7 +2,10 @@ class Participant:
     def __init__(self, name, photo_link, list_of_events):
         self.__name = name
         self.__photo_link = photo_link
-        self.__list_of_events = []
+        if list_of_events is None:
+            self.__list_of_events = []
+        else:
+            self.__list_of_events = list_of_events
 
     def get_name(self):
         return self.__name

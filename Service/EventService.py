@@ -27,6 +27,8 @@ class EventService:
         :param event: Event object (Event)
         :return: None
         """
+        if event.get_maximum_places() < event.get_number_of_participants():
+            raise Exception("This event has exceeded its number of places!")
         self.__event_repository.add(event)
 
     def find_event_by_id(self, event_id):
@@ -35,13 +37,10 @@ class EventService:
         :param event_id: The ID of the event (str)
         :return:
         """
-        ok = False
         for event in self.get_all_events():
             if event.get_id() == event_id:
-                ok = True
                 return event
-        if ok is False:
-            raise Exception("Could not find event by ID!")
+        raise Exception("Could not find event by ID!")
 
     def delete_event(self, event_id):
         """
@@ -115,6 +114,8 @@ class EventService:
             if 604800 >= timespan >= 0:
                 next_days_list.append(event)
         sorted_list = sorted(next_days_list, key=lambda x: x.get_maximum_places())
+        if len(sorted_list) == 0:
+            raise Exception("There are no events in the next 7 days!")
         return sorted_list
 
     def get_events_by_month(self, month):
