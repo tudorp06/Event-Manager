@@ -51,6 +51,7 @@ class EventService:
         if self.find_event_by_id(event_id):
             event = self.find_event_by_id(event_id)
             self.__event_repository.delete(event)
+            return True
         else:
             raise Exception("Could not find event by ID!")
 
