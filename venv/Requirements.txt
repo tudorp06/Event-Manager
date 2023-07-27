@@ -1,0 +1,2 @@
+for app to run:
+pip install qrcode
